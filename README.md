@@ -36,7 +36,7 @@ portfolio/
 ├─ script.js         # navigasi, heatmap, dialog, jam, copy email
 ├─ assets/
 │  ├─ cover.jpg      # foto cover hero
-│  ├─ avatar.svg     # monogram N — ganti dengan foto asli
+│  ├─ avatar.jpg     # foto profil
 │  ├─ cta.jpg        # background CTA
 │  ├─ favicon.svg
 │  └─ icons/         # ikon brand (Simple Icons)
@@ -51,11 +51,12 @@ portfolio/
 | Experience | GDGOC Universitas Hasanuddin — member, 2025—2026 |
 | Pendidikan | Universitas Muslim Indonesia — S1 Informatika, semester 5; SMA Wahdah Bogor, 2020—2023 |
 | Projects | Repo `pasar-umkm`, `project-asal`, `portologi`, `portfolio` |
+| Foto profil | Foto pribadi Naufal Darmawan |
 | Contribution heatmap | [github-contributions-api.jogruber.de](https://github-contributions-api.jogruber.de/v4/nuffalle?y=last), snapshot 6 November 2026 |
 | Cover & CTA | Foto stok Unsplash |
 | Ikon | [Simple Icons](https://simpleicons.org) (CC0) |
 
-> **Catatan:** avatar saat ini adalah monogram, bukan foto orang. Ganti `assets/avatar.svg` dengan foto asli sebelum dipublikasikan.
+> **Catatan:** foto profil disimpan di `assets/avatar.jpg` dan sudah dipakai di hero serta footer.
 
 ## Cara mengganti konten
 
@@ -73,7 +74,7 @@ Email juga dipakai di `script.js` sebagai `contactEmail` untuk tombol dialog pro
 
 ### 2. Foto
 
-- `assets/avatar.svg` — monogram. Untuk memakai foto, simpan foto sebagai `assets/avatar.jpg`, lalu ganti `assets/avatar.svg` menjadi `assets/avatar.jpg` di dua tempat pada `index.html` (hero dan footer).
+- `assets/avatar.jpg` — foto profil persegi, minimal 512 × 512 px. Timpa file ini kalau ingin mengganti foto.
 - `assets/cover.jpg` — rasio sekitar 16:7, minimal 1400 px lebar
 - `assets/cta.jpg` — background CTA, minimal 1400 px lebar
 
@@ -169,7 +170,8 @@ Simpan hasilnya sebagai repo terpisah, lalu tambahkan kartu project baru di situ
 
 ## Kredit
 
-- Foto: [Unsplash](https://unsplash.com)
+- Foto profil: foto pribadi Naufal Darmawan
+- Foto cover & CTA: [Unsplash](https://unsplash.com)
 - Ikon brand: [Simple Icons](https://simpleicons.org) (CC0)
 - Font: [Inter](https://rsms.me/inter/) dan [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) via Google Fonts
 
