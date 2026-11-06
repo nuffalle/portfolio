@@ -18,7 +18,9 @@ Lalu buka alamat yang ditampilkan (biasanya `http://localhost:3000`).
 
 - Hero dengan cover, avatar, bio, status, dan tautan sosial
 - Navigasi section yang sticky + active state saat scroll
-- Education + learning focus
+- Experience: GDGOC Universitas Hasanuddin Makassar (2025—2026)
+- Education: Universitas Muslim Indonesia + SMA Wahdah Bogor
+- Learning focus
 - Projects dengan dialog case study interaktif dan tautan ke project
 - Stack teknologi dengan ikon
 - GitHub-style contribution heatmap dari **data kontribusi asli** `@nuffalle`
@@ -46,7 +48,8 @@ portfolio/
 | Data | Sumber |
 | --- | --- |
 | Nama, email, sosial | Profil GitHub `nuffalle` dan profil publik |
-| Pendidikan | Universitas Muslim Indonesia — S1 Informatika, semester 5 |
+| Experience | GDGOC Universitas Hasanuddin — member, 2025—2026 |
+| Pendidikan | Universitas Muslim Indonesia — S1 Informatika, semester 5; SMA Wahdah Bogor, 2020—2023 |
 | Projects | Repo `pasar-umkm`, `project-asal`, `portologi`, `portfolio` |
 | Contribution heatmap | [github-contributions-api.jogruber.de](https://github-contributions-api.jogruber.de/v4/nuffalle?y=last), snapshot 6 November 2026 |
 | Cover & CTA | Foto stok Unsplash |
@@ -74,15 +77,16 @@ Email juga dipakai di `script.js` sebagai `contactEmail` untuk tombol dialog pro
 - `assets/cover.jpg` — rasio sekitar 16:7, minimal 1400 px lebar
 - `assets/cta.jpg` — background CTA, minimal 1400 px lebar
 
-### 3. Education dan learning focus
+### 3. Experience, education, dan learning focus
 
 Ada di `index.html`, ditandai komentar:
 
 ```html
+<!-- ============ EXPERIENCE ============ -->
 <!-- ============ EDUCATION ============ -->
 ```
 
-Ganti nama kampus, program studi, semester, dan tag sesuai kondisi terbaru. Bagian **Learning focus** boleh dihapus kalau sudah tidak relevan.
+Ganti nama organisasi, role, periode, dan tag sesuai kondisi terbaru. Bagian **Learning focus** boleh dihapus kalau sudah tidak relevan.
 
 ### 4. Projects
 
@@ -171,6 +175,6 @@ Simpan hasilnya sebagai repo terpisah, lalu tambahkan kartu project baru di situ
 
 ## Catatan
 
-- Tidak ada klaim pengalaman kerja, awards, publikasi, atau sertifikasi di situs ini karena datanya belum tersedia.
+- Tidak ada klaim pengalaman kerja profesional, awards, publikasi, atau sertifikasi di situs ini karena datanya belum tersedia. Experience dan pendidikan yang tampil sudah berdasarkan data asli.
 - Contribution heatmap menampilkan aktivitas publik GitHub apa adanya. Kalau ingin grafik lebih ramai, rajin commit ke repo publik.
 - Cover dan CTA masih memakai foto stok; ganti dengan foto atau visual milik sendiri kalau sudah ada.
