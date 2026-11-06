@@ -1,6 +1,8 @@
-# Portfolio — Raka Adhitama
+# Portfolio — Naufal Darmawan
 
-Website portfolio satu halaman dengan nuansa gelap, tipografi editorial, dan detail interaksi kecil. Dibuat tanpa framework, tanpa build step — hanya HTML, CSS, dan JavaScript.
+Website portfolio satu halaman dengan nuansa gelap dan tipografi editorial. Dibuat tanpa framework dan tanpa build step — hanya HTML, CSS, dan JavaScript.
+
+Posisi yang dipakai: **Informatics Student · Aspiring Data Analyst** di Universitas Muslim Indonesia, Makassar. Situs ini sengaja tidak memuat pengalaman, awards, publikasi, atau sertifikasi yang belum nyata.
 
 ## Menjalankan
 
@@ -16,12 +18,11 @@ Lalu buka alamat yang ditampilkan (biasanya `http://localhost:3000`).
 
 - Hero dengan cover, avatar, bio, status, dan tautan sosial
 - Navigasi section yang sticky + active state saat scroll
-- Experience & education dalam bentuk kartu
-- Projects dengan dialog case study interaktif
+- Education + learning focus
+- Projects dengan dialog case study interaktif dan tautan ke project
 - Stack teknologi dengan ikon
-- GitHub-style contribution heatmap yang digenerate dari data deterministik
-- Awards, publications, certifications
-- CTA, footer dengan jam Jakarta real-time, copy email, dan back-to-top
+- GitHub-style contribution heatmap dari **data kontribusi asli** `@nuffalle`
+- CTA, footer dengan jam Makassar real-time (WITA), copy email, dan back-to-top
 - Responsive, focus state, `prefers-reduced-motion`, dan semantic HTML
 
 ## Struktur file
@@ -33,12 +34,25 @@ portfolio/
 ├─ script.js         # navigasi, heatmap, dialog, jam, copy email
 ├─ assets/
 │  ├─ cover.jpg      # foto cover hero
-│  ├─ avatar.jpg     # foto profil
+│  ├─ avatar.svg     # monogram N — ganti dengan foto asli
 │  ├─ cta.jpg        # background CTA
 │  ├─ favicon.svg
 │  └─ icons/         # ikon brand (Simple Icons)
 └─ README.md
 ```
+
+## Sumber data
+
+| Data | Sumber |
+| --- | --- |
+| Nama, email, sosial | Profil GitHub `nuffalle` dan profil publik |
+| Pendidikan | Universitas Muslim Indonesia — S1 Informatika, semester 5 |
+| Projects | Repo `pasar-umkm`, `project-asal`, `portologi`, `portfolio` |
+| Contribution heatmap | [github-contributions-api.jogruber.de](https://github-contributions-api.jogruber.de/v4/nuffalle?y=last), snapshot 6 November 2026 |
+| Cover & CTA | Foto stok Unsplash |
+| Ikon | [Simple Icons](https://simpleicons.org) (CC0) |
+
+> **Catatan:** avatar saat ini adalah monogram, bukan foto orang. Ganti `assets/avatar.svg` dengan foto asli sebelum dipublikasikan.
 
 ## Cara mengganti konten
 
@@ -46,52 +60,53 @@ portfolio/
 
 Semua ada di `index.html`:
 
-- Nama: cari `Raka Adhitama`
+- Nama: cari `Naufal Darmawan`
 - Bio: cari `hero__bio`
 - Role, lokasi, dan domain: cari `hero__meta`
-- Email: ganti semua `hello@raka.dev`
-- Sosial link: ganti URL `github.com`, `linkedin.com`, `x.com`, `instagram.com`
+- Email: ganti semua `naufaldarmawan7@gmail.com`
+- Sosial link: ganti URL `github.com/nuffalle`, `instagram.com/nauffaldrmwaan`, `youtube.com/c/@nuffalle`
+
+Email juga dipakai di `script.js` sebagai `contactEmail` untuk tombol dialog project.
 
 ### 2. Foto
 
-Ganti file berikut (nama file boleh tetap sama):
-
+- `assets/avatar.svg` — monogram. Untuk memakai foto, simpan foto sebagai `assets/avatar.jpg`, lalu ganti `assets/avatar.svg` menjadi `assets/avatar.jpg` di dua tempat pada `index.html` (hero dan footer).
 - `assets/cover.jpg` — rasio sekitar 16:7, minimal 1400 px lebar
-- `assets/avatar.jpg` — foto persegi, minimal 300 × 300 px
 - `assets/cta.jpg` — background CTA, minimal 1400 px lebar
 
-### 3. Experience, projects, awards, dll.
+### 3. Education dan learning focus
 
-Semua section ada di `index.html` dan ditandai komentar:
+Ada di `index.html`, ditandai komentar:
 
 ```html
-<!-- ============ EXPERIENCE ============ -->
-<!-- ============ PROJECTS ============ -->
-<!-- ============ STACK ============ -->
+<!-- ============ EDUCATION ============ -->
 ```
 
-Tinggal duplikasi atau edit elemen yang sudah ada.
+Ganti nama kampus, program studi, semester, dan tag sesuai kondisi terbaru. Bagian **Learning focus** boleh dihapus kalau sudah tidak relevan.
 
-### 4. Isi dialog project
+### 4. Projects
 
-Data detail project ada di `script.js` pada object `projects`:
+Daftar project ada di `index.html` (cari `<!-- ============ PROJECTS ============ -->`). Detail dialog ada di `script.js` pada object `projects`:
 
 ```js
-const projects = {
-  loka: {
-    title: "Loka — AI Research Assistant",
-    year: 2026,
-    accent: "#8be9b0",
-    summary: "...",
-    tags: ["Next.js", "FastAPI"],
-    points: ["...", "..."]
-  }
-};
+"pasar-umkm": {
+  title: "Pasar UMKM — Local Business Catalog",
+  year: 2026,
+  accent: "#8be9b0",
+  url: "https://nuffalle.github.io/pasar-umkm/",
+  summary: "...",
+  tags: ["HTML", "CSS", "JavaScript"],
+  points: ["...", "..."]
+}
 ```
 
-Key object harus sama dengan `data-project` pada tombol di `index.html`.
+Key object harus sama dengan `data-project` pada tombol di `index.html`. Field `url` dipakai tombol **Open project** di dialog.
 
-### 5. Warna dan font
+### 5. Stack
+
+Ada di `index.html` (cari `<!-- ============ STACK ============ -->`). Setiap chip bisa memakai ikon dari `assets/icons/` atau teks saja.
+
+### 6. Warna dan font
 
 Palette, radius, dan font ada di bagian `:root` pada `styles.css`:
 
@@ -102,28 +117,51 @@ Palette, radius, dan font ada di bagian `:root` pada `styles.css`:
 --font-display: "Instrument Serif", serif;
 ```
 
-### 6. Data heatmap
+### 7. Data heatmap
 
-Heatmap menggunakan data demo deterministik di `script.js` (`initHeatmap`). Untuk memakai data GitHub asli, ganti bagian pembuatan `count` dengan data dari GitHub API atau JSON statis milikmu.
+Heatmap memakai snapshot data asli di `script.js` (`contributionCounts`) dengan tanggal mulai `2025-11-02`.
+
+Untuk memperbarui:
+
+1. Ambil data terbaru:
+
+   ```bash
+   curl "https://github-contributions-api.jogruber.de/v4/nuffalle?y=last"
+   ```
+
+2. Ubah respons JSON menjadi array angka `count` (satu angka per hari).
+3. Ganti `contributionCounts` di `script.js`, lalu sesuaikan tanggal mulai di `new Date("YYYY-MM-DD")`.
+
+Kalau array lebih pendek dari 371 sel, sisa sel otomatis dianggap 0.
 
 ## Deploy
 
+### GitHub Pages (paling cocok untuk repo ini)
+
+1. Push folder ini ke `github.com/nuffalle/portfolio`.
+2. Buka **Settings → Pages**.
+3. Pilih branch `main`, folder `/ (root)`.
+4. Situs akan tersedia di `https://nuffalle.github.io/portfolio/`.
+
 ### Vercel
 
-1. Push folder ini ke repository GitHub.
-2. Import repository di [vercel.com](https://vercel.com).
-3. Framework preset: **Other**. Build command dikosongkan, output directory `.`.
+1. Import repository di [vercel.com](https://vercel.com).
+2. Framework preset: **Other**. Build command dikosongkan, output directory `.`.
 
 ### Netlify
 
 1. Drag-and-drop folder `portfolio` ke [app.netlify.com/drop](https://app.netlify.com/drop).
-2. Selesai — tidak perlu build command.
+2. Tidak perlu build command.
 
-### GitHub Pages
+## Ide project berikutnya (data analytics)
 
-1. Push ke repository GitHub.
-2. Buka **Settings → Pages**.
-3. Pilih branch `main`, folder `/ (root)`.
+Supaya posisi *Aspiring Data Analyst* makin kuat, tambahkan 1–2 project yang benar-benar memakai data:
+
+1. **Analisis dataset publik** — misalnya data UMKM atau harga pangan dari BPS, lalu jawab satu pertanyaan dengan pandas + visualisasi.
+2. **Dashboard sederhana** — olah data yang sama menjadi dashboard statis (HTML/CSS/JS atau Looker Studio) dengan 3–4 metrik utama.
+3. **Studi kasus SQL** — ambil database publik, tulis 5–10 query analitik, dan dokumentasikan temuan di README.
+
+Simpan hasilnya sebagai repo terpisah, lalu tambahkan kartu project baru di situs ini.
 
 ## Kredit
 
@@ -133,4 +171,6 @@ Heatmap menggunakan data demo deterministik di `script.js` (`initHeatmap`). Untu
 
 ## Catatan
 
-Konten di demo ini fiktif (nama, perusahaan, pencapaian, dan tautan) — ganti dengan data asli sebelum dipublikasikan. Foto avatar adalah foto stok, bukan orang yang direpresentasikan.
+- Tidak ada klaim pengalaman kerja, awards, publikasi, atau sertifikasi di situs ini karena datanya belum tersedia.
+- Contribution heatmap menampilkan aktivitas publik GitHub apa adanya. Kalau ingin grafik lebih ramai, rajin commit ke repo publik.
+- Cover dan CTA masih memakai foto stok; ganti dengan foto atau visual milik sendiri kalau sudah ada.

@@ -1,5 +1,5 @@
 /* ============================================================
-   Raka Adhitama — portfolio interactions
+   Naufal Darmawan — portfolio interactions
    No dependencies. Everything is progressive enhancement.
    ============================================================ */
 
@@ -9,88 +9,67 @@
   document.documentElement.classList.add("js");
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const contactEmail = "naufaldarmawan7@gmail.com";
 
   /* ------------------------------------------------------------
      Project data used by the case-study dialog
      ------------------------------------------------------------ */
 
   const projects = {
-    loka: {
-      title: "Loka — AI Research Assistant",
+    "pasar-umkm": {
+      title: "Pasar UMKM — Local Business Catalog",
       year: 2026,
       accent: "#8be9b0",
+      url: "https://nuffalle.github.io/pasar-umkm/",
       summary:
-        "A citation-first research workspace that lets teams ask questions across their own paper library and trace every sentence back to the source.",
-      tags: ["Next.js", "FastAPI", "pgvector", "OpenAI", "RAG"],
+        "A dependency-free catalog prototype that helps small businesses present their products online, with search, filters, and detail modals.",
+      tags: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
       points: [
-        "Designed a hybrid retrieval pipeline that combines BM25, dense search, and a cross-encoder reranker.",
-        "Built a streaming answer interface with inline citations, confidence signals, and one-click source previews.",
-        "Cut hallucinated claims by 38% against a 300-question internal evaluation set."
+        "Built search across business name, product, category, and city, plus category filters and rating/name sorting.",
+        "Added accessible detail modals with keyboard support (Enter/Space to open, Esc to close) and a responsive layout.",
+        "Kept the prototype fully static — data lives in a single data.js file, so it runs without a database or build step."
       ]
     },
-    sawitscan: {
-      title: "SawitScan — Plant Health Scanner",
-      year: 2025,
-      accent: "#9ee6a8",
-      summary:
-        "An on-device palm-leaf disease detector that runs offline on mid-range Android phones, built for growers with unreliable connectivity.",
-      tags: ["TensorFlow Lite", "Android", "Computer Vision", "Edge AI"],
-      points: [
-        "Trained an EfficientNet-Lite model on 12k field images across four disease classes and one healthy class.",
-        "Quantised the model to 4.8 MB and kept inference under 40 ms on a 2021 mid-range device.",
-        "Reached 94% top-1 accuracy and 28 FPS live camera inference in the capstone demo."
-      ]
-    },
-    nusaocr: {
-      title: "NusaOCR — Document Intelligence",
-      year: 2025,
+    "papan-skor": {
+      title: "Papan Skor Domino",
+      year: 2026,
       accent: "#93c5fd",
+      url: "https://github.com/nuffalle/project-asal",
       summary:
-        "A document intelligence pipeline for Indonesian invoices and receipts, with a human-in-the-loop review queue for ambiguous fields.",
-      tags: ["Python", "PaddleOCR", "FastAPI", "React", "PostgreSQL"],
+        "A browser-based scoreboard for domino games, built to replace pen-and-paper scoring during late-night rounds.",
+      tags: ["HTML", "CSS", "JavaScript"],
       points: [
-        "Combined OCR with a layout-aware parser to extract line items, tax fields, and totals from scanned documents.",
-        "Added a confidence-based review queue so ambiguous fields route to a human instead of silently failing.",
-        "Processed a 6k-document pilot set with 96% field-level accuracy on totals and invoice dates."
+        "Tracks two teams with custom names, quick score buttons (+1 to +4), and an undo action.",
+        "Keeps a round history and a running log so disputed scores are easy to check.",
+        "Built as a single-page vanilla JavaScript app with a mobile-friendly board layout."
       ]
     },
-    ruangbaca: {
-      title: "RuangBaca — Reading Companion",
-      year: 2024,
-      accent: "#fcd34d",
-      summary:
-        "A reading companion that turns highlights into a personal spaced-repetition system, designed to stay out of the way while you read.",
-      tags: ["Next.js", "Supabase", "OpenAI", "Product Design"],
-      points: [
-        "Designed a calm, keyboard-first reading flow for capturing highlights without leaving the page.",
-        "Generated question cards from highlights and scheduled them with a lightweight SM-2 variant.",
-        "Shipped as a personal tool used weekly by a small beta group of 40 readers."
-      ]
-    },
-    sinyal: {
-      title: "Sinyal — Hybrid Recommender",
-      year: 2024,
+    portologi: {
+      title: "Portologi — Portfolio v1",
+      year: 2025,
       accent: "#c4b5fd",
+      url: "https://github.com/nuffalle/portologi",
       summary:
-        "A real-time recommendation service that blends collaborative filtering with content embeddings to handle both taste and cold starts.",
-      tags: ["PyTorch", "Redis", "FastAPI", "Recommender Systems"],
+        "An earlier portfolio experiment from semester 3 — a more playful, animation-heavy take on presenting personal work.",
+      tags: ["HTML", "CSS", "JavaScript", "Responsive"],
       points: [
-        "Served top-k recommendations in under 15 ms using Redis-backed candidate generation.",
-        "Blended implicit feedback and content embeddings to solve the cold-start problem for new items.",
-        "Evaluated offline with recall@10 and online with a small A/B test on click-through rate."
+        "Explored layout, motion, and visual identity before the current minimal version.",
+        "Built with plain HTML, CSS, and JavaScript, including responsive sections and scroll interactions.",
+        "Kept as a reference for how the design has evolved since then."
       ]
     },
     portfolio: {
       title: "Portfolio v3 — This Site",
-      year: 2024,
+      year: 2026,
       accent: "#8be9b0",
+      url: "https://github.com/nuffalle/portfolio",
       summary:
-        "The site you are looking at: a hand-built, dependency-free portfolio with a custom contribution graph and a focus on reading comfort.",
+        "The site you are looking at: a hand-built, dependency-free portfolio with a contribution graph generated from real GitHub activity.",
       tags: ["HTML", "CSS", "JavaScript", "Accessibility"],
       points: [
         "Built without a framework or build step — one HTML file, one stylesheet, one script.",
-        "Designed a mobile-first reading experience with sticky section navigation and reduced-motion support.",
-        "Added an interactive GitHub-style contribution heatmap generated from deterministic data."
+        "Includes sticky section navigation, accessible project dialogs, and reduced-motion support.",
+        "Renders a contribution heatmap from a snapshot of real GitHub activity, with a tooltip on hover."
       ]
     }
   };
@@ -214,17 +193,15 @@
       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
 
+    // Snapshot of real public GitHub activity for @nuffalle.
+    // Source: https://github-contributions-api.jogruber.de/v4/nuffalle?y=last
+    // Refresh by replacing this array and the start date below.
+    const contributionCounts = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,0,5,0];
+
     const today = new Date();
     today.setHours(12, 0, 0, 0);
 
-    const start = new Date(today);
-    start.setDate(today.getDate() - today.getDay() - 52 * 7);
-
-    let seed = 20261106;
-    const random = () => {
-      seed = (seed * 1664525 + 1013904223) >>> 0;
-      return seed / 4294967296;
-    };
+    const start = new Date("2025-11-02T12:00:00");
 
     const fragment = document.createDocumentFragment();
     let total = 0;
@@ -234,29 +211,9 @@
       date.setDate(start.getDate() + i);
       const isFuture = date > today;
 
-      let count = 0;
+      let count = isFuture ? 0 : contributionCounts[i] || 0;
 
-      if (!isFuture) {
-        const roll = random();
-
-        if (roll > 0.42) {
-          if (roll > 0.93) {
-            count = 10 + Math.floor(random() * 9);
-          } else if (roll > 0.8) {
-            count = 6 + Math.floor(random() * 4);
-          } else if (roll > 0.62) {
-            count = 3 + Math.floor(random() * 3);
-          } else {
-            count = 1 + Math.floor(random() * 2);
-          }
-        }
-
-        if ((date.getDay() === 0 || date.getDay() === 6) && random() < 0.45) {
-          count = Math.floor(count / 2);
-        }
-
-        total += count;
-      }
+      total += count;
 
       const level = count === 0 ? 0 : count < 3 ? 1 : count < 6 ? 2 : count < 10 ? 3 : 4;
 
@@ -344,6 +301,7 @@
   const dialogTags = document.getElementById("projectDialogTags");
   const dialogPoints = document.getElementById("projectDialogPoints");
   const dialogCta = document.getElementById("projectDialogCta");
+  const dialogLink = document.getElementById("projectDialogLink");
   const dialogClose = dialog ? dialog.querySelector("[data-close-dialog]") : null;
 
   function openProject(id) {
@@ -373,9 +331,19 @@
     );
 
     if (dialogCta) {
-      dialogCta.href = `mailto:hello@raka.dev?subject=${encodeURIComponent(
+      dialogCta.href = `mailto:${contactEmail}?subject=${encodeURIComponent(
         `Question about ${project.title}`
       )}`;
+    }
+
+    if (dialogLink) {
+      if (project.url) {
+        dialogLink.href = project.url;
+        dialogLink.hidden = false;
+      } else {
+        dialogLink.hidden = true;
+        dialogLink.removeAttribute("href");
+      }
     }
 
     dialog.showModal();
@@ -408,7 +376,7 @@
   }
 
   /* ------------------------------------------------------------
-     Local time in Jakarta
+     Local time in Makassar
      ------------------------------------------------------------ */
 
   const localTime = document.getElementById("localTime");
@@ -418,7 +386,7 @@
 
     const now = new Date();
     const time = new Intl.DateTimeFormat("en-GB", {
-      timeZone: "Asia/Jakarta",
+      timeZone: "Asia/Makassar",
       hour: "2-digit",
       minute: "2-digit",
       hour12: false
